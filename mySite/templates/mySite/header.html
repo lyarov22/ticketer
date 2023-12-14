@@ -7,16 +7,31 @@
       <img src="{% static '/img/билет.png' %}" class=""/>
     </a>
 
-    <input class="bg-white self-center flex w-[610px] shrink-0 max-w-full h-14 flex-col my-auto rounded-3xl" type="text">
+    <!-- <input class="bg-white self-center flex w-[610px] shrink-0 max-w-full h-14 flex-col my-auto rounded-3xl" type="text">
     <a href="" class="text-blue-900 text-center text-3xl bg-zinc-300 self-center justify-center items-stretch my-auto px-4 py-5 rounded-3xl">поиск</a>
-    <a href="" class="text-blue-900 text-3xl bg-zinc-300 self-center justify-center items-stretch my-auto pl-7 pr-4 py-4 rounded-3xl max-md:pl-5">фильтр</a>
+    <a href="" class="text-blue-900 text-3xl bg-zinc-300 self-center justify-center items-stretch my-auto pl-7 pr-4 py-4 rounded-3xl max-md:pl-5">фильтр</a> -->
+    
   </div>
-  {% if user.is_authenticated %}
-    <a href="{% url 'view_profile' %}" class="text-indigo-950 text-4xl self-center grow whitespace-nowrap my-auto">профиль</a>
-    <a href="{% url 'logout' %}" class="text-indigo-950 text-4xl self-center grow whitespace-nowrap my-auto">Выйти</a>
+  <div class="flex flex-row">
+    {% if user.is_authenticated %}
+    <div class="mt-8 pr-10">
+      <a href="{% url "cart:cart_detail" %}">
+        <img
+        loading="lazy"
+        src="https://cdn.builder.io/api/v1/image/assets/TEMP/4f9e8a794d27ac72dd1461801cbff589a0a46bf0032d5f358be3e9b224b69aa3?apiKey=fa4215c420a442bf87a69fcbffc5ead0&"
+        class="aspect-square object-contain object-center w-6 overflow-hidden shrink-0 max-w-full"
+      />
+    </a>
+
+
+    </div>
+    <a href="{% url 'view_profile' %}" class="text-indigo-950 text-4xl self-center grow whitespace-nowrap my-auto pr-10">профиль</a>
+    <a href="{% url 'logout' %}" class="text-indigo-950 text-4xl self-center grow whitespace-nowrap my-auto pr-10">Выйти</a>
   {% else %}
-    <a href="{% url 'login' %}" class="text-indigo-950 text-4xl self-center grow whitespace-nowrap my-auto">Войти</a>
-    <a href="{% url 'register' %}" class="text-indigo-950 text-4xl self-center grow whitespace-nowrap my-auto">Зарегистрироваться</a>
+    <a href="{% url 'login' %}" class="text-indigo-950 text-4xl self-center grow whitespace-nowrap my-auto pr-10">Войти</a>
+    <a href="{% url 'register' %}" class="text-indigo-950 text-4xl self-center grow whitespace-nowrap my-auto pr-10">Зарегистрироваться</a>
   {% endif %}
     
+  </div>  
+
 </header>
