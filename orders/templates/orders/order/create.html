@@ -1,0 +1,111 @@
+{% extends "shop/base.html" %}
+
+{% block title %}Checkout{% endblock %}
+
+{% block content %}
+<div
+  class="mt-20 xl:ml-40 xl:mr-40 bg-indigo-700 flex flex-col items-stretch my-auto px-8 py-9 rounded-[33.892px] max-md:max-w-full max-md:mt-10 max-md:px-5"
+>
+  <div
+    class="text-white text-4xl font-semibold grow whitespace-nowrap items-center justify-between gap-5 max-md:max-w-full max-md:flex-wrap"
+  >
+    Оформление заказа
+  </div>
+  <div class="text-white text-3xl font-medium mt-8 max-md:max-w-full">
+    Выбранные товары
+  </div>
+  <div
+    class="text-stone-300 text-xl font-medium whitespace-nowrap bg-indigo-500 justify-center mt-5 pl-8 pr-16 py-7 rounded-xl items-start max-md:max-w-full max-md:px-5"
+  >
+    {% for item in cart %}
+    <li>
+        {{ item.quantity }} x {{ item.product.name }}
+        <span>{{ item.total_price }} тг</span>
+    </li>
+    {% endfor %}
+  </div>
+  <form action="." method="post" class="order-form ">
+  <div
+    class="flex items-stretch justify-between gap-5 mt-7 max-md:max-w-full max-md:flex-wrap max-md:justify-center"
+  ></div>
+  <div
+    class="text-white text-2xl font-medium mt-4 max-md:max-w-full max-md:mt-10">
+        Имя
+  </div>
+  <input type="text" name="first_name" maxlength="50" required="" id="id_first_name" class="text-stone-300 text-xl font-medium whitespace-nowrap bg-indigo-500 justify-center mt-5 pl-8 pr-16 py-7 rounded-xl items-start max-md:max-w-full max-md:px-5">
+
+    <div
+    class="text-white text-2xl font-medium mt-4 max-md:max-w-full max-md:mt-10">
+        Фамилия
+  </div>
+  <input type="text" name="last_name" maxlength="50" required="" id="id_last_name" class="text-stone-300 text-xl font-medium whitespace-nowrap bg-indigo-500 justify-center mt-5 pl-8 pr-16 py-7 rounded-xl items-start max-md:max-w-full max-md:px-5">
+  
+      <div
+    class="text-white text-2xl font-medium mt-4 max-md:max-w-full max-md:mt-10">
+    Email
+  </div>
+  <input type="email" name="email" maxlength="50" required="" id="id_email" class="text-stone-300 text-xl font-medium whitespace-nowrap bg-indigo-500 justify-center mt-5 pl-8 pr-16 py-7 rounded-xl items-start max-md:max-w-full max-md:px-5">
+  
+    <div
+    class="text-white text-2xl font-medium mt-4 max-md:max-w-full max-md:mt-10">
+        Адрес
+  </div>
+  <input type="text" name="address" maxlength="50" required="" id="id_address" class="text-stone-300 text-xl font-medium whitespace-nowrap bg-indigo-500 justify-center mt-5 pl-8 pr-16 py-7 rounded-xl items-start max-md:max-w-full max-md:px-5">
+  
+    <div
+    class="text-white text-2xl font-medium mt-4 max-md:max-w-full max-md:mt-10">
+        Индекс
+  </div>
+  <input type="text" name="postal_code" maxlength="50" required="" id="id_postal_code" class="text-stone-300 text-xl font-medium whitespace-nowrap bg-indigo-500 justify-center mt-5 pl-8 pr-16 py-7 rounded-xl items-start max-md:max-w-full max-md:px-5">
+        <div
+    class="text-white text-2xl font-medium mt-4 max-md:max-w-full max-md:mt-10">
+        Город
+  </div>
+  <input type="text" name="city" maxlength="50" required="" id="id_city" class="text-stone-300 text-xl font-medium whitespace-nowrap bg-indigo-500 justify-center mt-5 pl-8 pr-16 py-7 rounded-xl items-start max-md:max-w-full max-md:px-5">
+  
+  
+  <div class="mt-8 max-md:max-w-full">
+    <div class="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
+      <div class="flex flex-col items-stretch w-6/12 max-md:w-full max-md:ml-0">
+        
+    </div>
+  </div>
+  <div class="bg-indigo-500 shrink-0 h-0.5 mt-9 max-md:max-w-full"></div>
+  <div
+    class="flex items-stretch justify-between gap-5 mt-8 max-md:max-w-full max-md:flex-wrap"
+  >
+    <div class="flex grow basis-[0%] flex-col items-stretch">
+      <div class="text-white text-2xl font-medium mt-7">Доставка</div>
+      <div class="text-white text-2xl font-medium mt-5">Итого</div>
+    </div>
+    <div class="flex basis-[0%] flex-col items-end">
+      <div class="text-green-500 text-right text-2xl font-medium mt-6">
+        Бесплатно
+      </div>
+      <div class="text-white text-right text-2xl font-medium self-stretch mt-6 whitespace-nowrap">
+        {{ cart.get_total_price }} тг
+      </div>
+    </div>
+  </div>
+  <div
+    class="bg-teal-300 flex w-full items-center justify-between gap-5 mt-12 pl-10 pr-9 py-8 rounded-3xl max-md:max-w-full max-md:flex-wrap max-md:mt-10 max-md:px-5"
+  >
+    <div class="self-stretch flex items-center justify-between gap-3.5">
+      <div
+        class="text-white text-3xl font-medium grow whitespace-nowrap my-auto"
+      >
+
+
+            <p><input type="submit" value="Оформить заказ"></p>
+            {% csrf_token %}
+        </form>
+      </div>
+      <img
+        loading="lazy"
+        srcset="https://cdn.builder.io/api/v1/image/assets/TEMP/cec03e980a49f46fcd210c54fa83cee7262471d9753fb15097d2695a8807123a?apiKey=fa4215c420a442bf87a69fcbffc5ead0&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/cec03e980a49f46fcd210c54fa83cee7262471d9753fb15097d2695a8807123a?apiKey=fa4215c420a442bf87a69fcbffc5ead0&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/cec03e980a49f46fcd210c54fa83cee7262471d9753fb15097d2695a8807123a?apiKey=fa4215c420a442bf87a69fcbffc5ead0&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/cec03e980a49f46fcd210c54fa83cee7262471d9753fb15097d2695a8807123a?apiKey=fa4215c420a442bf87a69fcbffc5ead0&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/cec03e980a49f46fcd210c54fa83cee7262471d9753fb15097d2695a8807123a?apiKey=fa4215c420a442bf87a69fcbffc5ead0&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/cec03e980a49f46fcd210c54fa83cee7262471d9753fb15097d2695a8807123a?apiKey=fa4215c420a442bf87a69fcbffc5ead0&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/cec03e980a49f46fcd210c54fa83cee7262471d9753fb15097d2695a8807123a?apiKey=fa4215c420a442bf87a69fcbffc5ead0&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/cec03e980a49f46fcd210c54fa83cee7262471d9753fb15097d2695a8807123a?apiKey=fa4215c420a442bf87a69fcbffc5ead0&"
+        class="aspect-square object-contain object-center w-[43px] overflow-hidden self-stretch shrink-0 max-w-full"
+      />
+    </div>
+  </div>
+</div>
+{% endblock %}

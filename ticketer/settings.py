@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'mySite', # app name
     'userSystem', # login system
     'benches',
+    'cart',
     
     'django_browser_reload',
 
@@ -52,7 +53,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    #'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -153,3 +154,10 @@ NPM_BIN_PATH = "C:/Program Files/nodejs/npm.cmd"
 AUTH_USER_MODEL = 'userSystem.CustomUser'
 
 DEFAULT_AVATAR = MEDIA_ROOT + 'default.png'
+
+CART_SESSION_ID = 'cart'
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+
+CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1']

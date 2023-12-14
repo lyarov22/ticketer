@@ -1,0 +1,141 @@
+{% extends "mySite/base.html" %}
+{% load static tailwind_tags %}
+{% block title %}
+    {% if category %}{{ category.title }}{% else %}Products{% endif %}
+{% endblock %}
+{% block content %}
+<div class="bg-white flex flex-col items-center pb-12">
+    <div
+      class="text-neutral-400 text-xl whitespace-nowrap self-stretch w-full justify-center px-16 py-11 items-start max-md:max-w-full max-md:pl-8 max-md:pr-5"
+    >   
+        <a href="/">Главная</a> →
+        <a href="{{ product.category.get_absolute_url }}">{{ product.category }}</a>  →
+        {{ product.name }}
+    </div>
+    <div
+      class="flex w-full max-w-[1132px] flex-col mt-12 px-5 max-md:max-w-full max-md:mt-10"
+    >
+      <div class="text-black text-5xl self-center whitespace-nowrap ml-24">
+        {{ product.name }}
+      </div>
+      <div
+        class="text-neutral-400 text-2xl font-medium self-center whitespace-nowrap mt-3.5"
+      >
+      {{ product.price }} тг
+      </div>
+      <div
+        class="flex w-[860px] max-w-full justify-between gap-5 ml-16 mt-11 self-start items-start max-md:flex-wrap max-md:mt-10"
+      >
+        <img
+          loading="lazy"
+          src="{{ product.image.url }}"
+          class="aspect-[0.68] object-contain object-center w-[400px] fill-black overflow-hidden shrink-0 max-w-full"
+        />
+        <div
+          class="flex grow basis-[0%] flex-col items-stretch mt-11 self-end max-md:mt-10"
+        >
+          <div class="text-black text-sm">
+            {{ product.description }}
+            <br />
+            <br />
+          </div>
+          <div
+            class="flex items-stretch justify-between gap-5 mt-24 max-md:mt-10"
+          >
+            <div
+              class="text-black text-xl whitespace-nowrap border grow justify-center pl-12 pr-16 py-6 rounded-2xl border-solid border-black items-start max-md:px-5"
+            >
+            <form action="{% url "cart:cart_add" product.id %}" method="post" class="">
+                {% csrf_token %}
+                <input type="submit" value="Добавить в корзину" class="underline underline-offset-4 cursor-pointer">
+                
+    <label for="id_quantity">:</label>
+    
+      
+      <select name="quantity" id="id_quantity">
+  <option value="1">1</option>
+
+  <option value="2">2</option>
+
+  <option value="3">3</option>
+
+  <option value="4">4</option>
+
+  <option value="5">5</option>
+
+  <option value="6">6</option>
+
+  <option value="7">7</option>
+
+  <option value="8">8</option>
+
+  <option value="9">9</option>
+
+  <option value="10">10</option>
+
+  <option value="11">11</option>
+
+  <option value="12">12</option>
+
+  <option value="13">13</option>
+
+  <option value="14">14</option>
+
+  <option value="15">15</option>
+
+  <option value="16">16</option>
+
+  <option value="17">17</option>
+
+  <option value="18">18</option>
+
+  <option value="19">19</option>
+
+  <option value="20">20</option>
+
+</select>
+      
+{% csrf_token %}
+        <input type="hidden" name="update" value="False" id="id_update">
+      
+    
+  
+                <label for="id_quantity"></label>
+                <input type="hidden" name="csrfmiddlewaretoken" value="x7VjSgjpOJK5eRbVyHK2y3aIsoHcIBIDmU6lurLb5AdY8rEoGwp3IiEmdOoPO5Zz">
+
+            </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="bg-zinc-300 w-[605px] shrink-0 max-w-full h-px mt-36 self-end max-md:mt-10"
+      ></div>
+      <div
+        class="text-black text-2xl font-medium self-center whitespace-nowrap mt-10"
+      >
+        Description
+      </div>
+      <div
+        class="text-neutral-400 text-justify text-base self-stretch mt-20 max-md:max-w-full max-md:mt-10"
+      >
+      {{ product.description }}
+      </div>
+    </div>
+    <div
+      class="bg-zinc-300 self-stretch min-h-[1px] w-full mb-16 max-md:max-w-full max-md:mb-10"
+    ></div>
+  </div>
+
+    <div class="product-detail bg-green-400">
+        <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static "img/no_image.jpg" %}{% endif %}">
+        <h1>{{ product.name }}</h1>
+        <h2><a href="{{ product.category.get_absolute_url }}">{{ product.category }}</a></h2>
+        <p class="price">${{ product.price }}</p>
+        <form action="{% url "cart:cart_add" product.id %}" method="post">
+            {{ cart_product_form }}
+            {% csrf_token %}
+            <input type="submit" value="Add to cart">
+        </form>
+    </div>
+{% endblock %}

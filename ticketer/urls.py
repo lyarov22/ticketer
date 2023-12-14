@@ -27,6 +27,8 @@ urlpatterns = [
 
     path('', include('benches.urls')),
 
+    path('cart/', include(('cart.urls', 'cart'), namespace='cart')),
+
     path("__reload__/", include("django_browser_reload.urls")),
 ]
 

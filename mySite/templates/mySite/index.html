@@ -32,7 +32,7 @@
 				class="flex flex-col items-stretch w-[27%] max-md:w-full max-md:ml-0"
 			  >
 				<div class="flex flex-col items-stretch max-md:mt-10 ">
-				  <div class="text-black text-3xl whitespace-nowrap">Название: {{ bench.name }}</div>
+				  <a href="{% url 'benches:bench_detail' bench.id %}" class="text-black text-3xl whitespace-nowrap">Название: {{ bench.name }} <br><br> Цена: {{ bench.price }} тенге</a>
 				  <div class="text-black text-3xl mt-8 ">Дата: {{ bench.created_date }}</div>
 				  <div class="text-black text-3xl mt-6 ">Адрес: {{ bench.district }}</div>
 				</div>

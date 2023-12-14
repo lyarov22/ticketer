@@ -1,0 +1,16 @@
+{% extends "shop/base.html" %}
+
+{% block title %}Thank you{% endblock %}
+
+{% block content %}
+<div class="mt-10 ml-10 text-xl">
+    <h1>Спасибо за заказ!</h1>
+    <p>Ваш заказ успешно обработан. Номер вашего заказа
+        <strong>{{ order.id }}</strong>.</p>
+        <br>
+    <a class="text-2xl" href="/">
+        Вернуться на главную
+    </a>
+    
+</div>
+{% endblock %}

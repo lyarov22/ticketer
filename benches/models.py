@@ -44,6 +44,8 @@ class Bench(models.Model):
     type = models.ForeignKey(BenchType, on_delete=models.CASCADE, blank=True, null=True)
     district = models.ForeignKey(BenchDistrict, on_delete=models.CASCADE, blank=True, null=True)
 
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+
     class Meta:
         verbose_name = "Мероприятие"
         verbose_name_plural = "Мероприятие"

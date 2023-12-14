@@ -1,0 +1,129 @@
+{% extends "mySite/base.html" %}
+{% load static %}
+{% block title %}
+    Your shopping cart
+{% endblock %}
+{% block content %}
+<div class="bg-white pl-12 pr-16 py-12 rounded-xl max-md:px-5">
+    <div class="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
+      <div class="flex flex-col items-stretch w-[62%] max-md:w-full max-md:ml-0">
+        <div
+          class="flex flex-col mt-9 items-start max-md:max-w-full max-md:mt-10"
+        >
+          <a href="/" class="flex items-stretch gap-0">
+            <img
+              loading="lazy"
+              srcset="https://cdn.builder.io/api/v1/image/assets/TEMP/5924c26352200de65180c8ee2f87fa36c0b8c512e2747f88dc65a4ed585f7fb9?apiKey=fa4215c420a442bf87a69fcbffc5ead0&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/5924c26352200de65180c8ee2f87fa36c0b8c512e2747f88dc65a4ed585f7fb9?apiKey=fa4215c420a442bf87a69fcbffc5ead0&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/5924c26352200de65180c8ee2f87fa36c0b8c512e2747f88dc65a4ed585f7fb9?apiKey=fa4215c420a442bf87a69fcbffc5ead0&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/5924c26352200de65180c8ee2f87fa36c0b8c512e2747f88dc65a4ed585f7fb9?apiKey=fa4215c420a442bf87a69fcbffc5ead0&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/5924c26352200de65180c8ee2f87fa36c0b8c512e2747f88dc65a4ed585f7fb9?apiKey=fa4215c420a442bf87a69fcbffc5ead0&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/5924c26352200de65180c8ee2f87fa36c0b8c512e2747f88dc65a4ed585f7fb9?apiKey=fa4215c420a442bf87a69fcbffc5ead0&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/5924c26352200de65180c8ee2f87fa36c0b8c512e2747f88dc65a4ed585f7fb9?apiKey=fa4215c420a442bf87a69fcbffc5ead0&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/5924c26352200de65180c8ee2f87fa36c0b8c512e2747f88dc65a4ed585f7fb9?apiKey=fa4215c420a442bf87a69fcbffc5ead0&"
+              class="aspect-square object-contain object-center w-[51px] overflow-hidden shrink-0 max-w-full"
+            />
+            <div
+              class="text-stone-900 text-xl font-semibold self-center grow whitespace-nowrap my-auto"
+            >
+              Продолжить покупки
+            </div>
+        </a>
+          <div
+            class="self-stretch flex flex-col items-stretch mt-8 max-md:max-w-full"
+          >
+            <div
+              class="bg-stone-300 w-[1030px] shrink-0 max-w-full h-[3px] mr-7 max-md:mr-2.5"
+            ></div>
+            <div
+              class="text-stone-900 text-xl font-medium mt-12 max-md:max-w-full max-md:mt-10"
+            >
+              Корзина
+            </div>
+            <div
+              class="text-stone-900 text-base font-medium mt-2 max-md:max-w-full"
+            >
+              Товаров добавлено:
+              {% with total_items=cart|length %}
+                {% if cart|length > 0 %}
+                    &nbsp;{{ total_items }}   
+                {% else %}
+                    &nbsp; 0
+                {% endif %}
+            {% endwith %}
+            </div>
+
+            {% for item in cart %}
+            {% with product=item.product %}
+            <div class="shadow-sm bg-white flex w-[1030px] max-w-full items-stretch justify-between gap-5 mr-7 mt-14 pl-4 pr-10 py-4 rounded-xl max-md:flex-wrap max-md:justify-center max-md:mr-2.5 max-md:mt-10 max-md:pr-5"> 
+                  <div class="max-md:max-w-full">
+                    <div
+                      class="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0"
+                    >
+                      <div
+                        class="flex flex-col items-stretch w-[33%] max-md:w-full max-md:ml-0"
+                      >
+                        <img
+                          loading="lazy"
+                          srcset="{{ product.image.url }}"
+                          class="aspect-[0.96] object-contain object-center w-[135px] overflow-hidden shrink-0 max-w-full grow max-md:mt-8"
+                        />
+                      </div>
+                      <div
+                        class="flex flex-col items-stretch w-[67%] ml-5 max-md:w-full max-md:ml-0"
+                      >
+                        <div class="flex flex-col items-stretch my-auto max-md:mt-10">
+                          <a href="{{ product.get_absolute_url }}" class="text-stone-900 text-xl font-medium hover:text-red-500">
+                            {{ product.name }}
+                          </a>
+                          <div
+                            class="text-stone-900 text-base font-medium whitespace-nowrap mt-4"
+                          >
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="self-center flex gap-4 my-auto items-start">
+                    <div
+                      class="text-neutral-700 text-xl font-semibold leading-9 grow whitespace-nowrap mt-1.5"
+                    >
+                    {{ item.quantity }} x {{ item.price }} тг
+                    </div>
+
+
+                  </div>
+                  <div
+                    class="self-center flex items-center justify-between gap-5 my-auto"
+                  >
+                    <div
+                      class="text-neutral-700 text-right text-xl font-medium my-auto"
+                    >
+                    Сумма: {{ item.total_price }} тг
+                    </div>
+                    <a href="{% url "cart:cart_remove" product.id%}">
+                      <img
+                      loading="lazy"
+                      srcset="https://cdn.builder.io/api/v1/image/assets/TEMP/480bc681d7b009f3619c392d69dbd76ff288ae34369e037aaf17acfa28f75367?apiKey=fa4215c420a442bf87a69fcbffc5ead0&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/480bc681d7b009f3619c392d69dbd76ff288ae34369e037aaf17acfa28f75367?apiKey=fa4215c420a442bf87a69fcbffc5ead0&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/480bc681d7b009f3619c392d69dbd76ff288ae34369e037aaf17acfa28f75367?apiKey=fa4215c420a442bf87a69fcbffc5ead0&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/480bc681d7b009f3619c392d69dbd76ff288ae34369e037aaf17acfa28f75367?apiKey=fa4215c420a442bf87a69fcbffc5ead0&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/480bc681d7b009f3619c392d69dbd76ff288ae34369e037aaf17acfa28f75367?apiKey=fa4215c420a442bf87a69fcbffc5ead0&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/480bc681d7b009f3619c392d69dbd76ff288ae34369e037aaf17acfa28f75367?apiKey=fa4215c420a442bf87a69fcbffc5ead0&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/480bc681d7b009f3619c392d69dbd76ff288ae34369e037aaf17acfa28f75367?apiKey=fa4215c420a442bf87a69fcbffc5ead0&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/480bc681d7b009f3619c392d69dbd76ff288ae34369e037aaf17acfa28f75367?apiKey=fa4215c420a442bf87a69fcbffc5ead0&"
+                      class="aspect-square object-contain object-center w-[32px] overflow-hidden self-stretch shrink-0 max-w-full"
+                    />
+                    </a>
+
+                  </div>
+                </div>
+          </div>
+          {% endwith %}
+          {% endfor %}
+
+          
+        </div>
+
+        <a href="{% url "orders:order_create" %}"
+        class="bg-amber-300 flex w-auto gap-5 mt-12 pl-10 pr-9 py-8 rounded-3xl max-md:max-w-full max-md:flex-wrap max-md:mt-10 max-md:px-5"
+      >
+        <div
+          class="text-white text-3xl font-medium grow whitespace-nowrap self-stretch items-center justify-between gap-3.5"
+        >
+          ОФОРМИТЬ ЗАКАЗ
+        </div>
+      </a>
+      </div>
+
+    </div>
+  </div>
+        
+{% endblock %}

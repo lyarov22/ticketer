@@ -1,0 +1,122 @@
+{% extends "mySite/base.html" %}
+{% load static tailwind_tags %}
+{% block title %}
+    {% if category %}{{ category.title }}{% else %}Products{% endif %}
+{% endblock %}
+{% block content %}
+<div class="bg-white flex flex-col items-center pb-12">
+    <div
+      class="text-neutral-400 text-xl whitespace-nowrap self-stretch w-full justify-center px-16 py-11 items-start max-md:max-w-full max-md:pl-8 max-md:pr-5"
+    >   
+        <a href="/">Главная</a>   →
+        {{ product.name }}
+    </div>
+    <div
+      class="flex w-full max-w-[1132px] flex-col mt-12 px-5 max-md:max-w-full max-md:mt-10"
+    >
+      <div class="text-black text-5xl self-center whitespace-nowrap ml-24">
+        {{ product.name }}
+      </div>
+      <div
+        class="text-neutral-400 text-2xl font-medium self-center whitespace-nowrap mt-3.5"
+      >
+      {{ product.price }} тг
+      </div>
+      <div
+        class="flex w-[860px] max-w-full justify-between gap-5 ml-16 mt-11 self-start items-start max-md:flex-wrap max-md:mt-10"
+      >
+        <img
+          src="{{ product.get_avatar_url }}"
+          class="aspect-[0.68] object-contain object-center w-[400px] fill-black overflow-hidden shrink-0 max-w-full"
+        />
+        <div
+          class="flex grow basis-[0%] flex-col items-stretch mt-11 max-md:mt-10"
+        >
+          <div class="text-black text-xl">
+            <br>
+            <br>
+            Дата: {{ product.created_date }}
+            <br>
+            <br>
+            Адрес: {{ product.district }}
+            <br>
+            <br>
+            Тема мероприятия: {{ product.type }}
+            <br>
+            <br>
+            Описание: {{ product.deskription }}
+          </div>
+          <div
+            class="flex items-stretch justify-between gap-5 mt-24 max-md:mt-10"
+          >
+            <div
+              class="text-black text-xl whitespace-nowrap border grow justify-center pl-12 pr-16 py-6 rounded-2xl border-solid border-black items-start max-md:px-5"
+            >
+            <form action="{% url "cart:cart_add" product.id %}" method="post" class="">
+                {% csrf_token %}
+                <input type="submit" value="Добавить в корзину" class="underline underline-offset-4 cursor-pointer">
+                
+    <label for="id_quantity">:</label>
+    
+      
+      <select name="quantity" id="id_quantity">
+  <option value="1">1</option>
+
+  <option value="2">2</option>
+
+  <option value="3">3</option>
+
+  <option value="4">4</option>
+
+  <option value="5">5</option>
+
+  <option value="6">6</option>
+
+  <option value="7">7</option>
+
+  <option value="8">8</option>
+
+  <option value="9">9</option>
+
+  <option value="10">10</option>
+
+  <option value="11">11</option>
+
+  <option value="12">12</option>
+
+  <option value="13">13</option>
+
+  <option value="14">14</option>
+
+  <option value="15">15</option>
+
+  <option value="16">16</option>
+
+  <option value="17">17</option>
+
+  <option value="18">18</option>
+
+  <option value="19">19</option>
+
+  <option value="20">20</option>
+
+</select>
+      
+{% csrf_token %}
+        <input type="hidden" name="update" value="False" id="id_update">
+      
+    
+  
+                <label for="id_quantity"></label>
+                <input type="hidden" name="csrfmiddlewaretoken" value="x7VjSgjpOJK5eRbVyHK2y3aIsoHcIBIDmU6lurLb5AdY8rEoGwp3IiEmdOoPO5Zz">
+
+            </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    <div
+      class="bg-zinc-300 self-stretch min-h-[1px] w-full mb-16 max-md:max-w-full max-md:mb-10"
+    ></div>
+  </div>
+{% endblock %}
