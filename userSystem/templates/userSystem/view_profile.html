@@ -1,0 +1,53 @@
+{% extends "mySite/base.html" %}
+
+{% block title %}view profile{% endblock %}
+{% block content %}
+
+{% if user == request.user or profile.visibility == 'public' %}
+
+<header class="bg-white flex flex-col justify-center items-center px-16 py-12 max-md:px-5">
+    <div class="flex w-full max-w-[1644px] flex-col mt-20 mb-8 items-start max-md:max-w-full max-md:mt-10">
+      <div class="w-[570px] max-w-full">
+        <div class="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
+          <div class="flex flex-col items-stretch w-[58%] max-md:w-full max-md:ml-0">
+            <img src="{{ profile.get_avatar_url }}" class="aspect-[0.9] object-contain object-center w-full overflow-hidden grow max-md:mt-10" alt="Аватар пользователя">
+            </div>
+          <div class="flex flex-col items-stretch w-[42%] ml-5 max-md:w-full max-md:ml-0">
+            <div class="text-black text-5xl my-auto max-md:text-4xl max-md:mt-10">Никнейм:&nbsp;{{ user.username }}</div>
+            <div class="text-black text-5xl my-auto max-md:text-4xl max-md:mt-10">Имя:&nbsp;{{ profile.name }}</div>
+            <div class="text-black text-5xl my-auto max-md:text-4xl max-md:mt-10">Фамилия:&nbsp;{{ profile.surname }}</div>
+            {% if user == request.user %}
+                <a href="{% url 'edit_profile' %}">Редактировать профиль</a>
+                <a href="{% url 'logout' %}">Выйти</a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      <div class="text-black text-5xl self-center max-w-[471px] mt-40 max-md:text-4xl max-md:mt-10">история покупок</div>
+      <div class="bg-fuchsia-400 bg-opacity-50 self-stretch flex flex-col justify-center mt-8 px-16 py-12 rounded-[37px] items-end max-md:max-w-full max-md:px-5">
+        <div class="bg-fuchsia-200 flex w-[821px] max-w-full flex-col items-stretch mr-20 mt-7 mb-60 pl-8 pr-16 pt-11 pb-7 rounded-[62px] max-md:mr-2.5 max-md:mb-10 max-md:px-5">
+          <div class="text-black text-3xl max-md:max-w-full">название:</div>
+          <div class="text-black text-3xl mt-6 max-md:max-w-full">дата и время:</div>
+          <div class="mt-4 max-md:max-w-full">
+            <div class="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
+              <div class="flex flex-col items-stretch w-[24%] max-md:w-full max-md:ml-0">
+                <div class="text-black text-3xl max-md:mt-8">описание:</div>
+              </div>
+              <div class="flex flex-col items-stretch w-[76%] ml-5 max-md:w-full max-md:ml-0">
+                <div class="bg-zinc-100 flex w-[530px] shrink-0 max-w-full h-[132px] flex-col mx-auto rounded-xl max-md:mt-7"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+{% else %}
+    <p>Этот профиль приватный, и доступ к нему ограничен.</p>
+{% endif %}
+
+
+{% endblock %}
+
