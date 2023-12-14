@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'userSystem', # login system
     'benches',
     'cart',
+    'orders',
     
     'django_browser_reload',
 

@@ -1,10 +1,10 @@
-{% extends "shop/base.html" %}
+{% extends "mySite/base.html" %}
 
 {% block title %}Checkout{% endblock %}
 
 {% block content %}
 <div
-  class="mt-20 xl:ml-40 xl:mr-40 bg-indigo-700 flex flex-col items-stretch my-auto px-8 py-9 rounded-[33.892px] max-md:max-w-full max-md:mt-10 max-md:px-5"
+  class="mt-20 xl:ml-40 xl:mr-40 bg-violet-500 flex flex-col items-stretch my-auto px-8 py-9 rounded-[33.892px] max-md:max-w-full max-md:mt-10 max-md:px-5"
 >
   <div
     class="text-white text-4xl font-semibold grow whitespace-nowrap items-center justify-between gap-5 max-md:max-w-full max-md:flex-wrap"
@@ -15,11 +15,11 @@
     Выбранные товары
   </div>
   <div
-    class="text-stone-300 text-xl font-medium whitespace-nowrap bg-indigo-500 justify-center mt-5 pl-8 pr-16 py-7 rounded-xl items-start max-md:max-w-full max-md:px-5"
+    class="text-black text-xl font-medium whitespace-nowrap bg-violet-300 justify-center mt-5 pl-8 pr-16 py-7 rounded-xl items-start max-md:max-w-full max-md:px-5"
   >
     {% for item in cart %}
     <li>
-        {{ item.quantity }} x {{ item.product.name }}
+        {{ item.quantity }} билета на {{ item.product.name }} -
         <span>{{ item.total_price }} тг</span>
     </li>
     {% endfor %}
@@ -27,41 +27,43 @@
   <form action="." method="post" class="order-form ">
   <div
     class="flex items-stretch justify-between gap-5 mt-7 max-md:max-w-full max-md:flex-wrap max-md:justify-center"
-  ></div>
+  >
+</div>
+
   <div
     class="text-white text-2xl font-medium mt-4 max-md:max-w-full max-md:mt-10">
         Имя
   </div>
-  <input type="text" name="first_name" maxlength="50" required="" id="id_first_name" class="text-stone-300 text-xl font-medium whitespace-nowrap bg-indigo-500 justify-center mt-5 pl-8 pr-16 py-7 rounded-xl items-start max-md:max-w-full max-md:px-5">
+  <input type="text" name="first_name" maxlength="50" required="" id="id_first_name" class="text-stone-300 text-xl font-medium whitespace-nowrap bg-violet-300 justify-center mt-5 pl-8 pr-16 py-7 rounded-xl items-start max-md:max-w-full max-md:px-5">
 
     <div
     class="text-white text-2xl font-medium mt-4 max-md:max-w-full max-md:mt-10">
         Фамилия
   </div>
-  <input type="text" name="last_name" maxlength="50" required="" id="id_last_name" class="text-stone-300 text-xl font-medium whitespace-nowrap bg-indigo-500 justify-center mt-5 pl-8 pr-16 py-7 rounded-xl items-start max-md:max-w-full max-md:px-5">
+  <input type="text" name="last_name" maxlength="50" required="" id="id_last_name" class="text-stone-300 text-xl font-medium whitespace-nowrap bg-violet-300 justify-center mt-5 pl-8 pr-16 py-7 rounded-xl items-start max-md:max-w-full max-md:px-5">
   
       <div
     class="text-white text-2xl font-medium mt-4 max-md:max-w-full max-md:mt-10">
     Email
   </div>
-  <input type="email" name="email" maxlength="50" required="" id="id_email" class="text-stone-300 text-xl font-medium whitespace-nowrap bg-indigo-500 justify-center mt-5 pl-8 pr-16 py-7 rounded-xl items-start max-md:max-w-full max-md:px-5">
+  <input type="email" name="email" maxlength="50" required="" id="id_email" class="text-stone-300 text-xl font-medium whitespace-nowrap bg-violet-300 justify-center mt-5 pl-8 pr-16 py-7 rounded-xl items-start max-md:max-w-full max-md:px-5">
   
     <div
     class="text-white text-2xl font-medium mt-4 max-md:max-w-full max-md:mt-10">
         Адрес
   </div>
-  <input type="text" name="address" maxlength="50" required="" id="id_address" class="text-stone-300 text-xl font-medium whitespace-nowrap bg-indigo-500 justify-center mt-5 pl-8 pr-16 py-7 rounded-xl items-start max-md:max-w-full max-md:px-5">
+  <input type="text" name="address" maxlength="50" required="" id="id_address" class="text-stone-300 text-xl font-medium whitespace-nowrap bg-violet-300 justify-center mt-5 pl-8 pr-16 py-7 rounded-xl items-start max-md:max-w-full max-md:px-5">
   
     <div
     class="text-white text-2xl font-medium mt-4 max-md:max-w-full max-md:mt-10">
         Индекс
   </div>
-  <input type="text" name="postal_code" maxlength="50" required="" id="id_postal_code" class="text-stone-300 text-xl font-medium whitespace-nowrap bg-indigo-500 justify-center mt-5 pl-8 pr-16 py-7 rounded-xl items-start max-md:max-w-full max-md:px-5">
+  <input type="text" name="postal_code" maxlength="50" required="" id="id_postal_code" class="text-stone-300 text-xl font-medium whitespace-nowrap bg-violet-300 justify-center mt-5 pl-8 pr-16 py-7 rounded-xl items-start max-md:max-w-full max-md:px-5">
         <div
     class="text-white text-2xl font-medium mt-4 max-md:max-w-full max-md:mt-10">
         Город
   </div>
-  <input type="text" name="city" maxlength="50" required="" id="id_city" class="text-stone-300 text-xl font-medium whitespace-nowrap bg-indigo-500 justify-center mt-5 pl-8 pr-16 py-7 rounded-xl items-start max-md:max-w-full max-md:px-5">
+  <input type="text" name="city" maxlength="50" required="" id="id_city" class="text-stone-300 text-xl font-medium whitespace-nowrap bg-violet-300 justify-center mt-5 pl-8 pr-16 py-7 rounded-xl items-start max-md:max-w-full max-md:px-5">
   
   
   <div class="mt-8 max-md:max-w-full">
@@ -70,13 +72,12 @@
         
     </div>
   </div>
-  <div class="bg-indigo-500 shrink-0 h-0.5 mt-9 max-md:max-w-full"></div>
+  <div class="bg-violet-300 shrink-0 h-0.5 mt-9 max-md:max-w-full"></div>
   <div
     class="flex items-stretch justify-between gap-5 mt-8 max-md:max-w-full max-md:flex-wrap"
   >
     <div class="flex grow basis-[0%] flex-col items-stretch">
-      <div class="text-white text-2xl font-medium mt-7">Доставка</div>
-      <div class="text-white text-2xl font-medium mt-5">Итого</div>
+      <div class="text-white text-2xl font-medium mt-5">К оплате</div>
     </div>
     <div class="flex basis-[0%] flex-col items-end">
       <div class="text-green-500 text-right text-2xl font-medium mt-6">
@@ -88,7 +89,7 @@
     </div>
   </div>
   <div
-    class="bg-teal-300 flex w-full items-center justify-between gap-5 mt-12 pl-10 pr-9 py-8 rounded-3xl max-md:max-w-full max-md:flex-wrap max-md:mt-10 max-md:px-5"
+    class="bg-violet-900 flex w-full items-center justify-between gap-5 mt-12 pl-10 pr-9 py-8 rounded-3xl max-md:max-w-full max-md:flex-wrap max-md:mt-10 max-md:px-5"
   >
     <div class="self-stretch flex items-center justify-between gap-3.5">
       <div
